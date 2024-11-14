@@ -2,6 +2,10 @@
 
 A comprehensive utility module to detect the execution environment (Node.js, Browser, Web Worker) and platform information.
 
+## Demo
+
+[View live Demo](https://js-env-eta.vercel.app/)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)

@@ -7,7 +7,12 @@
   "scripts": {
     "test": "node test/test.js"
   },
-  "author": "modernweb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modeusweb/js-env.git"
+  },
+  "homepage": "https://js-env-eta.vercel.app",
+  "author": "modeusweb",
   "license": "MIT",
   "keywords": [
     "environment",
