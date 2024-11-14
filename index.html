@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Env Utility Demo</title>
+    <script type="module">
+      import {
+        isNode,
+        isBrowser,
+        detectPlatform,
+        detectOperatingSystem,
+        detectBrowser,
+        detectApiSupport,
+        detectNetworkInfo,
+        getEnvironmentInfo,
+      } from './src/jsEnv.js';
+
+      console.log('Is Node.js:', isNode());
+      console.log('Is Browser:', isBrowser());
+      console.log('Platform:', detectPlatform());
+      console.log('Operating System:', detectOperatingSystem());
+      console.log('Browser:', detectBrowser());
+      console.log('API Support:', detectApiSupport());
+      console.log('Network Info:', detectNetworkInfo());
+      console.log('Full Environment Info:', getEnvironmentInfo());
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const resultDiv = document.createElement('div');
+        resultDiv.innerHTML = `
+                <h1>JS Env Utility Demo</h1>
+                <p>Is Node.js: ${isNode()}</p>
+                <p>Is Browser: ${isBrowser()}</p>
+                <p>Platform: ${detectPlatform()}</p>
+                <p>Operating System: ${detectOperatingSystem()}</p>
+                <p>Browser: ${detectBrowser()}</p>
+                <pre>API Support: ${JSON.stringify(detectApiSupport(), null, 2)}</pre>
+                <pre>Network Info: ${JSON.stringify(detectNetworkInfo(), null, 2)}</pre>
+                <pre>Full Environment Info: ${JSON.stringify(getEnvironmentInfo(), null, 2)}</pre>
+            `;
+        document.body.appendChild(resultDiv);
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

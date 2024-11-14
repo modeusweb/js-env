@@ -1,0 +1,21 @@
+{
+  "name": "js-env",
+  "version": "1.0.0",
+  "description": "A comprehensive utility module to detect the execution environment (Node.js, Browser, Web Worker) and platform information.",
+  "main": "src/jsEnv.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "author": "modernweb",
+  "license": "MIT",
+  "keywords": [
+    "environment",
+    "browser",
+    "node",
+    "platform",
+    "web worker",
+    "detection",
+    "utility"
+  ]
+}
