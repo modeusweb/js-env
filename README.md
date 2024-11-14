@@ -49,16 +49,7 @@ import {
     detectApiSupport, 
     detectNetworkInfo, 
     getEnvironmentInfo 
-} from './src/jsEnv.js';
-```
-
-### Example Usage in Browser
-
-```html
-<script type="module">
-    import { getEnvironmentInfo } from './src/jsEnv.js';
-    console.log(getEnvironmentInfo());
-</script>
+} from 'js-env-utility';
 ```
 
 ## Functions
