@@ -30,7 +30,7 @@ A comprehensive utility module to detect the execution environment (Node.js, Bro
 
 ## Installation
 ```bash
-npm install js-env
+npm install js-env-utility
 ```
 
 ## Usage
@@ -79,7 +79,7 @@ To ensure the module works as expected, you can run the provided test script:
 1. Make sure you are in the project directory:
 
 ```bash
-cd js-env
+cd js-env-utility
 ```
 
 2. Run the test script with Node.js:

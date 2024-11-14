@@ -1,6 +1,6 @@
 {
   "name": "js-env-utility",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A comprehensive utility module to detect the execution environment (Node.js, Browser, Web Worker) and platform information.",
   "main": "src/jsEnv.js",
   "type": "module",
