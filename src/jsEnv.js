@@ -18,83 +18,99 @@ export function isBrowser() {
 export function detectPlatform() {
   if (isNode()) {
     return 'Node.js';
-  } else if (isBrowser()) {
-    return 'Browser';
-  } else {
-    return 'Unknown';
   }
+  if (isBrowser()) {
+    return 'Browser';
+  }
+  return 'Unknown';
 }
 
 // Detect the operating system in the environment
 export function detectOperatingSystem() {
   if (isNode()) {
-    return process.platform; // Returns 'darwin', 'win32', 'linux', etc.
-  } else if (isBrowser()) {
+    return process.platform; // 'darwin', 'win32', 'linux', etc.
+  }
+
+  if (isBrowser()) {
     const userAgent = navigator.userAgent;
+
     if (/Windows NT/i.test(userAgent)) return 'Windows';
     if (/Mac OS X/i.test(userAgent)) return 'MacOS';
     if (/Linux/i.test(userAgent)) return 'Linux';
     if (/Android/i.test(userAgent)) return 'Android';
     if (/iOS|iPhone|iPad|iPod/i.test(userAgent)) return 'iOS';
+
     return 'Unknown';
   }
+
   return 'Unknown';
 }
 
 // Detect the browser name and version
 export function detectBrowser() {
-  if (isBrowser()) {
-    const userAgent = navigator.userAgent;
-    if (/Chrome\/\d+/i.test(userAgent)) {
-      return 'Chrome';
-    } else if (/Firefox\/\d+/i.test(userAgent)) {
-      return 'Firefox';
-    } else if (
-      /Safari\/\d+/i.test(userAgent) &&
-      !/Chrome\/\d+/i.test(userAgent)
-    ) {
-      return 'Safari';
-    } else if (/Edge\/\d+/i.test(userAgent)) {
-      return 'Edge';
-    } else if (/MSIE \d+/i.test(userAgent) || /Trident\/\d+/i.test(userAgent)) {
-      return 'Internet Explorer';
-    }
-    return 'Unknown Browser';
+  if (!isBrowser()) {
+    return null;
   }
-  return null;
+
+  const userAgent = navigator.userAgent;
+
+  if (/Chrome\/\d+/i.test(userAgent) && !/Edg\/\d+/i.test(userAgent)) {
+    return 'Chrome';
+  }
+  if (/Firefox\/\d+/i.test(userAgent)) {
+    return 'Firefox';
+  }
+  if (/Safari\/\d+/i.test(userAgent) && !/Chrome\/\d+/i.test(userAgent)) {
+    return 'Safari';
+  }
+  if (/Edg\/\d+/i.test(userAgent)) {
+    return 'Edge';
+  }
+  if (/MSIE \d+/i.test(userAgent) || /Trident\/\d+/i.test(userAgent)) {
+    return 'Internet Explorer';
+  }
+
+  return 'Unknown Browser';
 }
 
 // Detect support for specific web APIs
 export function detectApiSupport() {
-  if (isBrowser()) {
-    return {
-      serviceWorker: 'serviceWorker' in navigator,
-      webGL: !!window.WebGLRenderingContext,
-      localStorage: 'localStorage' in window,
-      sessionStorage: 'sessionStorage' in window,
-      geolocation: 'geolocation' in navigator,
-      notifications: 'Notification' in window,
-      fetch: 'fetch' in window,
-    };
+  if (!isBrowser()) {
+    return null;
   }
-  return null;
+
+  return {
+    serviceWorker: 'serviceWorker' in navigator,
+    webGL: !!window.WebGLRenderingContext,
+    localStorage: 'localStorage' in window,
+    sessionStorage: 'sessionStorage' in window,
+    geolocation: 'geolocation' in navigator,
+    notifications: 'Notification' in window,
+    fetch: 'fetch' in window,
+  };
 }
 
 // Detect network information (e.g., connection type)
 export function detectNetworkInfo() {
-  if (isBrowser() && 'connection' in navigator) {
-    const connection =
-      navigator.connection ||
-      navigator.mozConnection ||
-      navigator.webkitConnection;
-    return {
-      type: connection.effectiveType,
-      downlink: connection.downlink,
-      rtt: connection.rtt,
-      saveData: connection.saveData,
-    };
+  if (!isBrowser()) {
+    return 'Network information not available';
   }
-  return 'Network information not available';
+
+  const connection =
+    navigator.connection ||
+    navigator.mozConnection ||
+    navigator.webkitConnection;
+
+  if (!connection) {
+    return 'Network information not available';
+  }
+
+  return {
+    type: connection.effectiveType || 'unknown',
+    downlink: connection.downlink ?? null,
+    rtt: connection.rtt ?? null,
+    saveData: connection.saveData ?? false,
+  };
 }
 
 // Comprehensive function to get all environment information
